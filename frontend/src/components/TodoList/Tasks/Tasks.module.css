@@ -1,0 +1,47 @@
+.taskItemWrapper {
+    display: grid;
+    grid-template-areas: "taskItems" "formAddTask";
+    height: 100%;
+}
+
+.taskItems {
+    grid-area: taskItems;
+}
+
+.formAddTask {
+    grid-area: formAddTask;
+    align-self: end;
+    position: relative;
+}
+
+.inputAddTask {
+    box-sizing: border-box;
+    width: 100%;
+
+    padding: 10px 44px 10px 10px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+
+    background: #F3F3F3;
+
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+}
+
+.addTaskBtn {
+    position: absolute;
+    right: 10px;
+    top: 8px;
+
+    width: 24px;
+    height: 24px;
+    box-sizing: border-box;
+    color: #6B7280;
+
+    border-radius: 50%;
+    border: none;
+
+    background: #9333EA;
+}

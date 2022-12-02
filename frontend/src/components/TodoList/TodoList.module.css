@@ -1,0 +1,21 @@
+.todoListWrapper {
+    display: grid;
+
+    margin-top: 24px;
+    grid-template-areas: "todoNav content";
+    grid-template-columns: 3fr 10fr;
+}
+
+.nav {
+    grid-area: todoNav;
+}
+
+.content {
+    grid-area: content;
+    padding: 18px 16px;
+
+    height: 640px;
+
+    background: #FFFFFF;
+    border-radius: 10px;
+}

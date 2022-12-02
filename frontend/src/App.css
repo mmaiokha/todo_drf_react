@@ -1,0 +1,15 @@
+body {
+    background: linear-gradient(299.75deg, #B9D5FF 0%, #F6D1FC 98.93%);
+}
+
+.appWrapper {
+    margin: 24px auto;
+    width: 920px;
+    display: grid;
+
+    grid-template-areas: "header" "content";
+}
+
+.appWrapperContent {
+    grid-area: content;
+}

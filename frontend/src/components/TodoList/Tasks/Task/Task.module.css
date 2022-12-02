@@ -1,0 +1,48 @@
+.taskItem {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.title {
+    color: #404040;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 21px;
+
+    margin: 0;
+}
+
+.description {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    color: #6B7280;
+
+    margin: 5px 0 0;
+}
+
+.btn {
+    height: 100%;
+
+    outline: none;
+    border: none;
+    border-radius: 7px;
+    margin-right: 10px;
+}
+
+.btn:last-child {
+    margin-right: 0;
+}
+
+/*CollapseMEnu*/
+.collapseMenu {
+    visibility: collapse;
+    position: absolute;
+}
+
+.active {
+    visibility: visible;
+}
+
+
