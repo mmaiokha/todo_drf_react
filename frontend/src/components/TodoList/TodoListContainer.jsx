@@ -7,7 +7,9 @@ import React from "react";
 class TodoListContainer extends React.Component {
 
     componentDidMount() {
-        this.props.setTodoList(1)
+        if (this.props.isAuthenticated) {
+            this.props.setTodoList(1)
+        }
     }
 
     getTasks = () => {
@@ -30,7 +32,8 @@ class TodoListContainer extends React.Component {
     render() {
         return (
             <TodoList tasks={this.getTasks()} taskList={this.getTaskList()} setTodoList={this.props.setTodoList}
-                      changeInputValue={this.props.changeAddTaskInputValueAC} inputValue={this.props.inputValue} />
+                      changeInputValue={this.props.changeAddTaskInputValueAC} inputValue={this.props.inputValue}
+                      isAuthenticated={this.props.isAuthenticated}/>
         )
     };
 };

@@ -36,14 +36,12 @@ export const setTodoList = (todoListId) => async dispatch => {
             'Accept': 'application/json'
         }
     };
-
     try {
         const res = await axios.get(`${process.env.REACT_APP_API_URL}task_list/${todoListId}/`, config)
         dispatch({type: SET_TODO_LIST, todoList: res.data})
     } catch (err) {
         console.log(err)
     }
-
 }
 
 export const changeAddTaskInputValueAC = (inputValue) => {

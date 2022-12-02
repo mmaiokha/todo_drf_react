@@ -70,7 +70,6 @@ const authReducer = (store = initialStore, action) => {
         default:
             return store
     }
-
 }
 
 export default authReducer;
@@ -115,7 +114,7 @@ const loadUser = () => async dispatch => {
 
     try {
         const res = await axios.get(`${process.env.REACT_APP_API_URL}users/me/`, config)
-        dispatch({type: USER_LOADED_SUCCESS, user:res.data})
+        dispatch({type: USER_LOADED_SUCCESS, user: res.data})
     } catch (err) {
 
     }

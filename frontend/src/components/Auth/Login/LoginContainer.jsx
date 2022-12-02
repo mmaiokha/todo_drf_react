@@ -2,13 +2,16 @@ import React from "react";
 import Login from "./Login";
 import {connect} from "react-redux";
 import {login, passwordChange, usernameChange} from "../../../redux/authReducer";
+import {Navigate} from "react-router";
 
 class LoginContainer extends React.Component {
     render() {
-        return <Login password={this.props.password} username={this.props.username}
-                      passwordChange={this.props.passwordChange} usernameChange={this.props.usernameChange}
-                      login={this.props.login} isAuthenticated={this.props.user}
-        />
+        return (
+            this.props.isAuthenticated ? <Navigate to={'/'} /> : <Login password={this.props.password} username={this.props.username}
+                   passwordChange={this.props.passwordChange} usernameChange={this.props.usernameChange}
+                   login={this.props.login} isAuthenticated={this.props.user}
+            />
+        )
     }
 }
 
