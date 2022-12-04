@@ -1,6 +1,6 @@
 import {connect} from "react-redux";
 import TodoList from "./TodoList";
-import {changeAddTaskInputValueAC, setTodoList} from "../../redux/todoReducer";
+import {addTasks, changeAddTaskInputValueAC, deleteTask, setTodoList} from "../../redux/todoReducer";
 import React from "react";
 
 
@@ -33,7 +33,7 @@ class TodoListContainer extends React.Component {
         return (
             <TodoList tasks={this.getTasks()} taskList={this.getTaskList()} setTodoList={this.props.setTodoList}
                       changeInputValue={this.props.changeAddTaskInputValueAC} inputValue={this.props.inputValue}
-                      isAuthenticated={this.props.isAuthenticated}/>
+                      isAuthenticated={this.props.isAuthenticated} addTasks={this.props.addTasks} deleteTask={this.props.deleteTask}/>
         )
     };
 };
@@ -52,5 +52,7 @@ export default connect(mapStateToProps,
     {
         setTodoList,
         changeAddTaskInputValueAC,
+        addTasks,
+        deleteTask
     }
 )(TodoListContainer);
