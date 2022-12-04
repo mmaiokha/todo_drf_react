@@ -21,7 +21,6 @@ const Task = (props) => {
                     <button>edit</button>
                 </div>
             </div>
-
         </div>
     )
 }

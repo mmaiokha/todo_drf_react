@@ -1,20 +1,22 @@
 import s from './TodoList.module.css'
+import '../../App.css'
 import Tasks from "./Tasks/Tasks";
 import React from "react";
-import {Navigate} from "react-router";
+import {NavLink} from "react-router-dom";
 
 
 const TodoList = (props) => {
     return (
-        props.isAuthenticated ? <div className={s.todoListWrapper}>
-            <div className={s.nav}>
-                Tasks
+        <div className='containerWrapper'>
+            <div className='nav'>
+                <NavLink to={''} className={({isActive}) => (isActive ? 'activeLink' : "") + " " + 'linkItem'}>Tasks</NavLink>
             </div>
-            <div className={s.content}>
-                <Tasks tasks={props.tasks} taskList={props.taskList} setTodoList={props.setTodoList}
-                       changeInputValue={props.changeInputValue} inputValue={props.inputValue} addTasks={props.addTasks} deleteTask={props.deleteTask}/>
+            <div className='content'>
+                <Tasks tasks={props.tasks} taskList={props.taskList}
+                       changeInputValue={props.changeInputValue} inputValue={props.inputValue} addTasks={props.addTasks}
+                       deleteTask={props.deleteTask}/>
             </div>
-        </div> : <Navigate to={'/login'}/>
+        </div>
     )
 }
 

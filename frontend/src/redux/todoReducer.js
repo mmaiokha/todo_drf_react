@@ -99,5 +99,3 @@ export const deleteTask = (taskId) => async dispatch => {
 export const changeAddTaskInputValueAC = (inputValue) => {
     return {type: CHANGE_ADD_TASK_INPUT_VALUE, inputValue: inputValue}
 }
-
-

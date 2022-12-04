@@ -13,3 +13,76 @@ body {
 .appWrapperContent {
     grid-area: content;
 }
+
+
+/*Container Styles*/
+.containerWrapper {
+    display: grid;
+
+    margin-top: 24px;
+    grid-template-areas: "todoNav content";
+    grid-template-columns: 3fr 10fr;
+
+    column-gap: 21px;
+}
+
+/*Nav styles*/
+.nav {
+    grid-area: todoNav;
+}
+
+.linkItem {
+    display: block;
+
+    padding: 12px 12px 12px 42px;
+    margin-bottom: 10px;
+
+    border-radius: 5px;
+
+    font-style: normal;
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 19px;
+    color: #6B7280;
+
+    text-decoration: none;
+
+    position: relative;
+
+    cursor: pointer;
+}
+.linkItem:last-child {
+    margin-bottom: 0;
+}
+.linkItem::before {
+    content: "";
+    width: 24px;
+    height: 24px;
+
+    background: #6B7280;
+
+    display: inline-block;
+    position: absolute;
+
+    top: 10px;
+    left: 10px;
+}
+
+.activeLink {
+    color: #9333EA;
+    background: rgba(147, 51, 234, 0.06);
+}
+.activeLink::before {
+    background: #9333EA;
+}
+
+/*Content styles*/
+.content {
+    grid-area: content;
+    padding: 18px 16px;
+
+    height: 640px;
+
+    background: #FFFFFF;
+    border-radius: 10px;
+}

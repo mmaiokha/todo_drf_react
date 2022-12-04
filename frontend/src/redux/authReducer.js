@@ -42,7 +42,21 @@ const authReducer = (store = initialStore, action) => {
                 password: "",
                 username: "",
             }
+
         case LOGIN_FAIL:
+            localStorage.removeItem('access')
+            localStorage.removeItem('refresh')
+            return {
+                ...store,
+                isAuthenticated: false,
+                access: null,
+                refresh: null,
+                password: "",
+                username: "",
+                user: null
+            }
+        case LOGOUT:
+            console.log("logout")
             localStorage.removeItem('access')
             localStorage.removeItem('refresh')
             return {
@@ -58,14 +72,6 @@ const authReducer = (store = initialStore, action) => {
             return {
                 ...store,
                 user: action.user
-            }
-        case LOGOUT:
-            return {
-                ...store,
-                isAuthenticated: false,
-                access: null,
-                refresh: null,
-                user: null
             }
         default:
             return store
@@ -118,4 +124,8 @@ const loadUser = () => async dispatch => {
     } catch (err) {
 
     }
+}
+
+export const logout = () => {
+    return {type: LOGOUT}
 }

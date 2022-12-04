@@ -19,8 +19,10 @@ const Tasks = (props) => {
                 {taskElements}
             </div>
             <div className={s.formAddTask}>
-                <input className={s.inputAddTask} ref={inputRef} value={props.inputValue} onChange={() => props.changeInputValue(inputRef.current.value)}/>
-                <button className={s.addTaskBtn} onClick={() => props.addTasks(props.taskList, inputRef.current.value)}></button>
+                <input className={s.inputAddTask} ref={inputRef} value={props.inputValue}
+                       onChange={() => props.changeInputValue(inputRef.current.value)}/>
+                <button className={s.addTaskBtn}
+                        onClick={() => props.addTasks(props.taskList, inputRef.current.value)}></button>
             </div>
         </div>
     )
