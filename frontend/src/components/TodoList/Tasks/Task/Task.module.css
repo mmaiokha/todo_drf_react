@@ -3,6 +3,9 @@
     justify-content: space-between;
     margin-bottom: 30px;
 }
+.taskItem:last-child {
+    margin-bottom: 0;
+}
 
 .title {
     color: #404040;

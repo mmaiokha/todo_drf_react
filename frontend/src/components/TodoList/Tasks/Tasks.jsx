@@ -16,6 +16,7 @@ const Tasks = (props) => {
     return (
         <div className={s.taskItemWrapper}>
             <div className={s.taskItems}>
+                <h3 className={s.tlTitle}>Monday, December 5, 2022</h3>
                 {taskElements}
             </div>
             <div className={s.formAddTask}>
