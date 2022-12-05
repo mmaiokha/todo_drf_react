@@ -1,11 +1,15 @@
+from datetime import datetime
+
 from django.db import models
 from django.contrib.auth.models import User
 
 
 class TaskList(models.Model):
+    title = models.CharField(max_length=255, blank=True, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='task_lists')
     created = models.DateField(auto_now_add=True)
     is_active = models.BooleanField(default=True)
+
 
 
 class Task(models.Model):
