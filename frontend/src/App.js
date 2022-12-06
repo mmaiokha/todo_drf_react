@@ -23,7 +23,6 @@ function App() {
                         <Route path='/login' element={<LoginContainer />} />
                     </Routes>
                 </div>
-
             </div>
         </BrowserRouter>
     );

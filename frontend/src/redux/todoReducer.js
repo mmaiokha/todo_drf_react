@@ -45,7 +45,11 @@ const todoReducer = (state = initialState, action) => {
 
 export default todoReducer;
 
-export const setTodoList = (todoListId) => async dispatch => {
+export const setTodoList = (todoListId=null) => async dispatch => {
+    let URL = `${process.env.REACT_APP_API_URL}task_list/current/`
+    if (todoListId) {
+        URL = `${process.env.REACT_APP_API_URL}task_list/${todoListId}/`
+    }
     const config = {
         headers: {
             'Content-Type': 'application/json',
@@ -54,7 +58,7 @@ export const setTodoList = (todoListId) => async dispatch => {
         }
     };
     try {
-        const res = await axios.get(`${process.env.REACT_APP_API_URL}task_list/${todoListId}/`, config)
+        const res = await axios.get(URL, config)
         dispatch({type: SET_TODO_LIST, todoList: res.data})
     } catch (err) {
         console.log(err)

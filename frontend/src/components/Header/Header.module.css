@@ -1,7 +1,8 @@
 .headerWrapper {
+    margin-top: 24px;
     background: white;
     border-radius: 10px;
-
+    height: fit-content;
     padding: 14px;
 
     display: flex;

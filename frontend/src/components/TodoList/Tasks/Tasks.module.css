@@ -7,6 +7,21 @@
 
 .taskItems {
     grid-area: taskItems;
+    overflow-y: scroll;
+    height: 530px;
+    max-height: 530px;
+}
+
+.taskItems::-webkit-scrollbar {
+    background: #f3f3f3;
+    width: 10px;
+    border-radius: 5px;
+}
+
+.taskItems::-webkit-scrollbar-thumb {
+
+    border-radius: 5px;
+    background: #888;
 }
 
 .formAddTask {
@@ -50,3 +65,4 @@
 .tlTitle {
     margin: 0 0 20px 0;
 }
+

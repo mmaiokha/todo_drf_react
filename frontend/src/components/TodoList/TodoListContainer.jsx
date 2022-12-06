@@ -9,7 +9,7 @@ class TodoListContainer extends React.Component {
 
     componentDidMount() {
         if (this.props.isAuthenticated) {
-            this.props.setTodoList(1)
+            this.props.setTodoList()
         }
     }
 
@@ -23,7 +23,7 @@ class TodoListContainer extends React.Component {
 
     getTaskList = () => {
         if (this.props.state.todoList) {
-            return this.props.state.todoList.id
+            return this.props.state.todoList
         } else {
             return undefined
         }

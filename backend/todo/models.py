@@ -11,7 +11,6 @@ class TaskList(models.Model):
     is_active = models.BooleanField(default=True)
 
 
-
 class Task(models.Model):
     title = models.CharField(max_length=255, verbose_name='Title')
     description = models.TextField(blank=True, verbose_name='Description')

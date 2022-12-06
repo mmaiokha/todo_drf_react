@@ -48,4 +48,9 @@
     visibility: visible;
 }
 
+/*Edit task*/
+.editMenu {
+    position: absolute;
+}
+
 

@@ -15,15 +15,17 @@ const Tasks = (props) => {
 
     return (
         <div className={s.taskItemWrapper}>
-            <div className={s.taskItems}>
-                <h3 className={s.tlTitle}>Monday, December 5, 2022</h3>
-                {taskElements}
+            <div>
+                <h3 className={s.tlTitle}>{props.taskList.title}</h3>
+                <div className={s.taskItems}>
+                    {taskElements}
+                </div>
             </div>
             <div className={s.formAddTask}>
                 <input className={s.inputAddTask} ref={inputRef} value={props.inputValue}
                        onChange={() => props.changeInputValue(inputRef.current.value)}/>
                 <button className={s.addTaskBtn}
-                        onClick={() => props.addTasks(props.taskList, inputRef.current.value)}></button>
+                        onClick={() => props.addTasks(props.taskList.id, inputRef.current.value)}></button>
             </div>
         </div>
     )
