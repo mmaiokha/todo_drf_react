@@ -38,6 +38,7 @@ const todoReducer = (state = initialState, action) => {
                 return object.id === action.id;
             });
             stateCopy.todoList.tasks.splice(indexOfObject, 1)
+            console.log(stateCopy)
             return stateCopy
         }
         case EDIT_TASK_SUCCESS: {
@@ -60,6 +61,7 @@ const todoReducer = (state = initialState, action) => {
 
 };
 
+
 export default todoReducer;
 
 export const setTodoList = (todoListId=null) => async dispatch => {
@@ -73,22 +75,22 @@ export const setTodoList = (todoListId=null) => async dispatch => {
             'Authorization': `Bearer ${localStorage.getItem('access')}`,
             'Accept': 'application/json'
         }
-    };
+    }
     try {
         const res = await axios.get(URL, config)
         dispatch({type: SET_TODO_LIST, todoList: res.data})
     } catch (err) {
         console.log(err)
     }
-}
+};
 
-export const addTasks = (todoListId, title, description) => async dispatch => {
+export const addTask = (todoListId, title, description) => async dispatch => {
     const config = {
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${localStorage.getItem('access')}`,
         }
-    };
+    }
     const data = {
         task_list: todoListId,
         title: title,
@@ -100,7 +102,7 @@ export const addTasks = (todoListId, title, description) => async dispatch => {
     } catch (err) {
         console.log(err)
     }
-}
+};
 
 export const deleteTask = (taskId) => async dispatch => {
     const config = {
@@ -108,14 +110,14 @@ export const deleteTask = (taskId) => async dispatch => {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${localStorage.getItem('access')}`,
         }
-    };
+    }
     try {
         axios.delete(`${process.env.REACT_APP_API_URL}task/${taskId}/`, config)
         dispatch({type: DELETE_TASK_SUCCESS, id: taskId})
     } catch (err) {
         console.log(err)
     }
-}
+};
 
 export const editTask = (taskId, title) => async dispatch => {
     const config = {
@@ -123,7 +125,7 @@ export const editTask = (taskId, title) => async dispatch => {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${localStorage.getItem('access')}`,
         }
-    };
+    }
     const data = {
         title: title,
     }
@@ -133,12 +135,12 @@ export const editTask = (taskId, title) => async dispatch => {
     } catch (err) {
         console.log(err)
     }
-}
+};
 
-export const changeAddTaskInputValueAC = (inputValue) => {
+export const changeAddTaskInputValue = (inputValue) => {
     return {type: CHANGE_ADD_TASK_INPUT_VALUE, inputValue: inputValue}
-}
+};
 
 export const changeEditTaskInputValue = (inputValue) => {
     return {type: CHANGE_EDIT_TASK_INPUT_VALUE, inputValue: inputValue}
-}
+};

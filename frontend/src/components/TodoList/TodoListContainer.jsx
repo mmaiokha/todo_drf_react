@@ -1,8 +1,8 @@
 import {connect} from "react-redux";
 import TodoList from "./TodoList";
 import {
-    addTasks,
-    changeAddTaskInputValueAC,
+    addTask,
+    changeAddTaskInputValue,
     changeEditTaskInputValue,
     deleteTask,
     editTask,
@@ -20,33 +20,21 @@ class TodoListContainer extends React.Component {
         }
     }
 
-    getTasks = () => {
-        if (this.props.state.todoList) {
-            return this.props.state.todoList.tasks
-        } else {
-            return undefined
-        }
-    }
-
-    getTaskList = () => {
-        if (this.props.state.todoList) {
-            return this.props.state.todoList
-        } else {
-            return undefined
-        }
-    }
-
 
     render() {
-        return this.props.isAuthenticated ? <TodoList tasks={this.getTasks()} taskList={this.getTaskList()}
-                                                      changeInputValue={this.props.changeAddTaskInputValueAC}
-                                                      changeEditTaskInputValue={this.props.changeEditTaskInputValue}
-                                                      inputValue={this.props.inputValue}
-                                                      editTaskInputValue={this.props.editTaskInputValue}
+        return this.props.isAuthenticated ? <TodoList todoList={this.props.state.todoList}
+
                                                       isAuthenticated={this.props.isAuthenticated}
-                                                      addTasks={this.props.addTasks}
-                                                      deleteTask={this.props.deleteTask}
+
+                                                      addInputValue={this.props.addInputValue}
+                                                      changeAddInputValue={this.props.changeAddTaskInputValue}
+                                                      addTask={this.props.addTask}
+
+                                                      changeEditTaskInputValue={this.props.changeEditTaskInputValue}
+                                                      editInputValue={this.props.editInputValue}
                                                       editTask={this.props.editTask}
+
+                                                      deleteTask={this.props.deleteTask}
             />
             : <Navigate to={'/login'}/>
     };
@@ -56,8 +44,10 @@ class TodoListContainer extends React.Component {
 const mapStateToProps = (state) => {
     return {
         state: state.todoPage,
-        inputValue: state.todoPage.addTaskInputValue,
-        editTaskInputValue: state.todoPage.editTaskInputValue,
+
+        addInputValue: state.todoPage.addTaskInputValue,
+        editInputValue: state.todoPage.editTaskInputValue,
+
         isAuthenticated: state.auth.isAuthenticated,
     }
 }
@@ -66,9 +56,9 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps,
     {
         setTodoList,
-        changeAddTaskInputValueAC,
+        changeAddTaskInputValue,
         changeEditTaskInputValue,
-        addTasks,
+        addTask,
         deleteTask,
         editTask
     }

@@ -9,14 +9,25 @@ const TodoList = (props) => {
     return (
         <div className='containerWrapper'>
             <div className='nav'>
-                <NavLink to={''} className={({isActive}) => (isActive ? 'activeLink' : "") + " " + 'linkItem'}>Current</NavLink>
-                <NavLink to={'task_list'} className={({isActive}) => (isActive ? 'activeLink' : "") + " " + 'linkItem'}>Task list</NavLink>
+                <NavLink to={''} className={({isActive}) => (isActive ? 'activeLink' : "") + " " + 'linkItem'}>
+                    Current
+                </NavLink>
+                <NavLink to={'task_list'} className={({isActive}) => (isActive ? 'activeLink' : "") + " " + 'linkItem'}>
+                    Task list
+                </NavLink>
             </div>
             <div className='content'>
-                <Tasks tasks={props.tasks} taskList={props.taskList}
-                       changeInputValue={props.changeInputValue} inputValue={props.inputValue} addTasks={props.addTasks}
-                       deleteTask={props.deleteTask} editTask={props.editTask} changeEditTaskInputValue={props.changeEditTaskInputValue}
-                       editTaskInputValue={props.editTaskInputValue}
+                <Tasks todoList={props.todoList}
+
+                       changeAddInputValue={props.changeAddInputValue}
+                       addInputValue={props.addInputValue}
+                       addTask={props.addTask}
+
+                       changeEditTaskInputValue={props.changeEditTaskInputValue}
+                       editInputValue={props.editInputValue}
+                       editTask={props.editTask}
+
+                       deleteTask={props.deleteTask}
                 />
             </div>
         </div>
