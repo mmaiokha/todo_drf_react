@@ -9,6 +9,9 @@ const Tasks = (props) => {
                                                             key={t.id}
                                                             id={t.id}
                                                             deleteTask={props.deleteTask}
+                                                            editTask={props.editTask}
+                                                            changeEditTaskInputValue={props.changeEditTaskInputValue}
+                                                            editValue={props.editTaskInputValue}
     />) : taskElements = "No tasks"
 
     let inputRef = React.createRef();

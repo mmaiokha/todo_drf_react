@@ -15,7 +15,9 @@ const TodoList = (props) => {
             <div className='content'>
                 <Tasks tasks={props.tasks} taskList={props.taskList}
                        changeInputValue={props.changeInputValue} inputValue={props.inputValue} addTasks={props.addTasks}
-                       deleteTask={props.deleteTask}/>
+                       deleteTask={props.deleteTask} editTask={props.editTask} changeEditTaskInputValue={props.changeEditTaskInputValue}
+                       editTaskInputValue={props.editTaskInputValue}
+                />
             </div>
         </div>
     )

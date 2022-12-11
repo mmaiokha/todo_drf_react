@@ -4,12 +4,15 @@ const SET_TODO_LIST = 'SET_TODO_LIST'
 const SET_TODO_LIST_SUCCESS = 'SET_TODO_LIST_SUCCESS'
 
 const DELETE_TASK_SUCCESS = 'DELETE_TASK_SUCCESS'
+const EDIT_TASK_SUCCESS = 'EDIT_TASK_SUCCESS'
 
-const CHANGE_ADD_TASK_INPUT_VALUE = "CHANGE_ADD_TASK_INPUT_VALUE"
+const CHANGE_ADD_TASK_INPUT_VALUE = 'CHANGE_ADD_TASK_INPUT_VALUE'
+const CHANGE_EDIT_TASK_INPUT_VALUE = 'CHANGE_EDIT_TASK_INPUT_VALUE'
 
 let initialState = {
     todoList: {tasks: []},
-    addTaskInputValue: ""
+    addTaskInputValue: "",
+    editTaskInputValue: '',
 }
 
 const todoReducer = (state = initialState, action) => {
@@ -31,11 +34,25 @@ const todoReducer = (state = initialState, action) => {
             let stateCopy = {
                 ...state
             }
-            const indexOfObject = stateCopy.todoList.tasks.findIndex(object => {
+            let indexOfObject = stateCopy.todoList.tasks.findIndex(object => {
                 return object.id === action.id;
             });
             stateCopy.todoList.tasks.splice(indexOfObject, 1)
             return stateCopy
+        }
+        case EDIT_TASK_SUCCESS: {
+            let stateCopy = {...state}
+            let indexOfObject = stateCopy.todoList.tasks.findIndex(object => {
+                return object.id === action.id;
+            });
+            stateCopy.todoList.tasks[indexOfObject].title = action.newTitle
+            stateCopy.editTaskInputValue = ''
+            return stateCopy
+        }
+        case CHANGE_EDIT_TASK_INPUT_VALUE: {
+            return {
+                ...state, editTaskInputValue: action.inputValue
+            }
         }
         default:
             return state
@@ -93,8 +110,26 @@ export const deleteTask = (taskId) => async dispatch => {
         }
     };
     try {
-        axios.delete(`http://127.0.0.1:8000/api/task/${taskId}/`, config)
+        axios.delete(`${process.env.REACT_APP_API_URL}task/${taskId}/`, config)
         dispatch({type: DELETE_TASK_SUCCESS, id: taskId})
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+export const editTask = (taskId, title) => async dispatch => {
+    const config = {
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('access')}`,
+        }
+    };
+    const data = {
+        title: title,
+    }
+    try {
+        axios.patch(`${process.env.REACT_APP_API_URL}task/${taskId}/`, data, config)
+        dispatch({type: EDIT_TASK_SUCCESS, newTitle: title, id: taskId})
     } catch (err) {
         console.log(err)
     }
@@ -102,4 +137,8 @@ export const deleteTask = (taskId) => async dispatch => {
 
 export const changeAddTaskInputValueAC = (inputValue) => {
     return {type: CHANGE_ADD_TASK_INPUT_VALUE, inputValue: inputValue}
+}
+
+export const changeEditTaskInputValue = (inputValue) => {
+    return {type: CHANGE_EDIT_TASK_INPUT_VALUE, inputValue: inputValue}
 }
