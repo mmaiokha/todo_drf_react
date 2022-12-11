@@ -1,18 +1,21 @@
-import s from "./Tasks.module.css";
-import Task from "./Task/Task";
-import React from "react";
+import s from './Tasks.module.css'
+import Task from './Task/Task'
+import React from 'react'
+import {useOutletContext} from "react-router";
 
-const Tasks = (props) => {
+
+const Tasks = () => {
+    const {todoList, addInputValue, deleteTask, editTask, editInputValue, changeEditTaskInputValue, changeAddInputValue, addTask} = useOutletContext()
     let taskElements
-    props.todoList.tasks ? taskElements = props.todoList.tasks.map(t => <Task key={t.id}
+    todoList.tasks ? taskElements = todoList.tasks.map(t => <Task key={t.id}
                                                                               id={t.id}
                                                                               title={t.title}
                                                                               desctiption={t.description}
 
-                                                                              deleteTask={props.deleteTask}
-                                                                              editTask={props.editTask}
-                                                                              editValue={props.editInputValue}
-                                                                              changeEditTaskInputValue={props.changeEditTaskInputValue}
+                                                                              deleteTask={deleteTask}
+                                                                              editTask={editTask}
+                                                                              editValue={editInputValue}
+                                                                              changeEditTaskInputValue={changeEditTaskInputValue}
     />) : taskElements = "No tasks"
 
     let inputRef = React.createRef();
@@ -20,7 +23,7 @@ const Tasks = (props) => {
     return (
         <div className={s.taskItemWrapper}>
             <div>
-                <h3 className={s.tlTitle}>{props.todoList.title}</h3>
+                <h3 className={s.tlTitle}>{todoList.title}</h3>
                 <div className={s.taskItems}>
                     {taskElements}
                 </div>
@@ -28,14 +31,15 @@ const Tasks = (props) => {
             <div className={s.formAddTask}>
                 <input className={s.inputAddTask}
                        ref={inputRef}
-                       value={props.addInputValue}
-                       onChange={() => props.changeAddInputValue(inputRef.current.value)}
+                       value={addInputValue}
+                       onChange={() => changeAddInputValue(inputRef.current.value)}
                 />
                 <button className={s.addTaskBtn}
-                        onClick={() => props.addTask(props.todoList.id, inputRef.current.value)}></button>
+                        onClick={() => addTask(todoList.id, inputRef.current.value)}></button>
             </div>
         </div>
     )
 }
+
 
 export default Tasks;

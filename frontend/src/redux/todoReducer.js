@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios'
 
 const SET_TODO_LIST = 'SET_TODO_LIST'
 const SET_TODO_LIST_SUCCESS = 'SET_TODO_LIST_SUCCESS'
@@ -11,7 +11,7 @@ const CHANGE_EDIT_TASK_INPUT_VALUE = 'CHANGE_EDIT_TASK_INPUT_VALUE'
 
 let initialState = {
     todoList: {tasks: []},
-    addTaskInputValue: "",
+    addTaskInputValue: '',
     editTaskInputValue: '',
 }
 

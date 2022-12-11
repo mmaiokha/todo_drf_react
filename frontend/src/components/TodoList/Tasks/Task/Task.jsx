@@ -1,5 +1,6 @@
 import s from './Task.module.css'
-import React, {useState} from "react";
+import React, {useState} from 'react'
+
 
 const Task = (props) => {
     const [isActive, setIsActive] = useState(false);
@@ -55,5 +56,6 @@ const Task = (props) => {
         </>
     )
 }
+
 
 export default Task;

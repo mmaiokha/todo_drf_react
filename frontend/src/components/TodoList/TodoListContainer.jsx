@@ -1,5 +1,5 @@
-import {connect} from "react-redux";
-import TodoList from "./TodoList";
+import {connect} from 'react-redux'
+import TodoList from './TodoList'
 import {
     addTask,
     changeAddTaskInputValue,
@@ -7,9 +7,9 @@ import {
     deleteTask,
     editTask,
     setTodoList
-} from "../../redux/todoReducer";
-import React from "react";
-import {Navigate} from "react-router";
+} from '../../redux/todoReducer'
+import React from 'react'
+import {Navigate} from 'react-router'
 
 
 class TodoListContainer extends React.Component {
@@ -19,7 +19,6 @@ class TodoListContainer extends React.Component {
             this.props.setTodoList()
         }
     }
-
 
     render() {
         return this.props.isAuthenticated ? <TodoList todoList={this.props.state.todoList}

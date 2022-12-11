@@ -1,6 +1,6 @@
-import React from "react";
-import {useState} from "react";
-import {Navigate} from "react-router"
+import React from 'react'
+import {useState} from 'react'
+import {Navigate} from 'react-router'
 
 
 const Login = (props) => {

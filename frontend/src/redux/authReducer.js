@@ -1,7 +1,7 @@
-import axios from "axios";
+import axios from 'axios'
 
-const PASSWORD_CHANGE = "PASSWORD_CHANGE"
-const USERNAME_CHANGE = "USERNAME_CHANGE"
+const PASSWORD_CHANGE = 'PASSWORD_CHANGE'
+const USERNAME_CHANGE = 'USERNAME_CHANGE'
 
 const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 const LOGIN_FAIL = 'LOGIN_FAIL'
@@ -11,12 +11,12 @@ const USER_LOADED_SUCCESS = 'USER_LOADED_SUCCESS'
 
 
 let initialStore = {
-    access: localStorage.getItem("access"),
-    refresh: localStorage.getItem("refresh"),
+    access: localStorage.getItem('access'),
+    refresh: localStorage.getItem('refresh'),
     isAuthenticated: false,
     user: null,
-    username: "",
-    password: ""
+    username: '',
+    password: ''
 }
 
 const authReducer = (store = initialStore, action) => {
@@ -32,15 +32,15 @@ const authReducer = (store = initialStore, action) => {
                 username: action.username
             }
         case LOGIN_SUCCESS:
-            localStorage.setItem("access", action.access)
-            localStorage.setItem("refresh", action.refresh)
+            localStorage.setItem('access', action.access)
+            localStorage.setItem('refresh', action.refresh)
             return {
                 ...store,
                 access: action.access,
                 refresh: action.refresh,
                 isAuthenticated: true,
                 password: "",
-                username: "",
+                username: ""
             }
 
         case LOGIN_FAIL:
@@ -51,12 +51,11 @@ const authReducer = (store = initialStore, action) => {
                 isAuthenticated: false,
                 access: null,
                 refresh: null,
-                password: "",
-                username: "",
+                password: '',
+                username: '',
                 user: null
             }
         case LOGOUT:
-            console.log("logout")
             localStorage.removeItem('access')
             localStorage.removeItem('refresh')
             return {
@@ -64,8 +63,8 @@ const authReducer = (store = initialStore, action) => {
                 isAuthenticated: false,
                 access: null,
                 refresh: null,
-                password: "",
-                username: "",
+                password: '',
+                username: '',
                 user: null
             }
         case USER_LOADED_SUCCESS:
@@ -83,18 +82,18 @@ export default authReducer;
 
 export const passwordChange = (password) => {
     return {type: PASSWORD_CHANGE, password: password}
-}
+};
 
 export const usernameChange = (username) => {
     return {type: USERNAME_CHANGE, username: username}
-}
+};
 
 export const login = (username, password) => async dispatch => {
     const config = {
         headers: {
             'Content-Type': 'application/json'
         }
-    };
+    }
     try {
         const res = await axios.post(`${process.env.REACT_APP_API_URL}auth/token/`, {
                 password: password,
@@ -107,7 +106,7 @@ export const login = (username, password) => async dispatch => {
     } catch (err) {
         dispatch({type: LOGIN_FAIL})
     }
-}
+};
 
 const loadUser = () => async dispatch => {
     const config = {
@@ -116,7 +115,7 @@ const loadUser = () => async dispatch => {
             'Authorization': `Bearer ${localStorage.getItem('access')}`,
             'Accept': 'application/json'
         }
-    };
+    }
 
     try {
         const res = await axios.get(`${process.env.REACT_APP_API_URL}users/me/`, config)
@@ -124,8 +123,8 @@ const loadUser = () => async dispatch => {
     } catch (err) {
 
     }
-}
+};
 
 export const logout = () => {
     return {type: LOGOUT}
-}
+};
