@@ -7,7 +7,7 @@ import {
     deleteTask,
     editTask,
     setTodoList
-} from '../../redux/todoReducer'
+} from '../../redux/actions/todo'
 import React from 'react'
 import {Navigate} from 'react-router'
 
@@ -21,7 +21,7 @@ class TodoListContainer extends React.Component {
     }
 
     render() {
-        return this.props.isAuthenticated ? <TodoList todoList={this.props.state.todoList}
+        return this.props.isAuthenticated ? <TodoList todoList={this.props.state.todo}
 
                                                       isAuthenticated={this.props.isAuthenticated}
 

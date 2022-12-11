@@ -1,70 +1,15 @@
 import axios from 'axios'
 
-const SET_TODO_LIST = 'SET_TODO_LIST'
-const SET_TODO_LIST_SUCCESS = 'SET_TODO_LIST_SUCCESS'
+export const SET_TODO_LIST = 'SET_TODO_LIST'
+export const ADD_TASK_SUCCESS = 'ADD_TASK_SUCCESS'
 
-const DELETE_TASK_SUCCESS = 'DELETE_TASK_SUCCESS'
-const EDIT_TASK_SUCCESS = 'EDIT_TASK_SUCCESS'
+export const DELETE_TASK_SUCCESS = 'DELETE_TASK_SUCCESS'
+export const EDIT_TASK_SUCCESS = 'EDIT_TASK_SUCCESS'
 
-const CHANGE_ADD_TASK_INPUT_VALUE = 'CHANGE_ADD_TASK_INPUT_VALUE'
-const CHANGE_EDIT_TASK_INPUT_VALUE = 'CHANGE_EDIT_TASK_INPUT_VALUE'
+export const CHANGE_ADD_TASK_INPUT_VALUE = 'CHANGE_ADD_TASK_INPUT_VALUE'
+export const CHANGE_EDIT_TASK_INPUT_VALUE = 'CHANGE_EDIT_TASK_INPUT_VALUE'
 
-let initialState = {
-    todoList: {tasks: []},
-    addTaskInputValue: '',
-    editTaskInputValue: '',
-}
-
-const todoReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case SET_TODO_LIST:
-            return {
-                ...state, todoList: action.todoList
-            }
-        case CHANGE_ADD_TASK_INPUT_VALUE:
-            return {
-                ...state, addTaskInputValue: action.inputValue
-            }
-        case SET_TODO_LIST_SUCCESS: {
-            let stateCopy = {...state, addTaskInputValue: ""}
-            stateCopy.todoList.tasks.push(action.data)
-            return stateCopy
-        }
-        case DELETE_TASK_SUCCESS: {
-            let stateCopy = {
-                ...state
-            }
-            let indexOfObject = stateCopy.todoList.tasks.findIndex(object => {
-                return object.id === action.id;
-            });
-            stateCopy.todoList.tasks.splice(indexOfObject, 1)
-            console.log(stateCopy)
-            return stateCopy
-        }
-        case EDIT_TASK_SUCCESS: {
-            let stateCopy = {...state}
-            let indexOfObject = stateCopy.todoList.tasks.findIndex(object => {
-                return object.id === action.id;
-            });
-            stateCopy.todoList.tasks[indexOfObject].title = action.newTitle
-            stateCopy.editTaskInputValue = ''
-            return stateCopy
-        }
-        case CHANGE_EDIT_TASK_INPUT_VALUE: {
-            return {
-                ...state, editTaskInputValue: action.inputValue
-            }
-        }
-        default:
-            return state
-    }
-
-};
-
-
-export default todoReducer;
-
-export const setTodoList = (todoListId=null) => async dispatch => {
+export const setTodoList = (todoListId = null) => async dispatch => {
     let URL = `${process.env.REACT_APP_API_URL}task_list/current/`
     if (todoListId) {
         URL = `${process.env.REACT_APP_API_URL}task_list/${todoListId}/`
@@ -78,7 +23,7 @@ export const setTodoList = (todoListId=null) => async dispatch => {
     }
     try {
         const res = await axios.get(URL, config)
-        dispatch({type: SET_TODO_LIST, todoList: res.data})
+        dispatch({type: SET_TODO_LIST, todo: res.data})
     } catch (err) {
         console.log(err)
     }
@@ -98,7 +43,7 @@ export const addTask = (todoListId, title, description) => async dispatch => {
     }
     try {
         const res = await axios.post(`${process.env.REACT_APP_API_URL}task/`, data, config)
-        dispatch({type: SET_TODO_LIST_SUCCESS, data: res.data})
+        dispatch({type: ADD_TASK_SUCCESS, data: res.data})
     } catch (err) {
         console.log(err)
     }

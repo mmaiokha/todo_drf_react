@@ -1,8 +1,8 @@
 import {createStore, combineReducers, applyMiddleware} from 'redux'
 import thunkMiddleware from 'redux-thunk'
 import {composeWithDevTools} from 'redux-devtools-extension'
-import todoReducer from './todoReducer'
-import authReducer from './authReducer'
+import todoReducer from './redusers/todoReducer'
+import authReducer from './redusers/authReducer'
 
 const composedEnhancer = composeWithDevTools(applyMiddleware(thunkMiddleware))
 

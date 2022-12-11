@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
-import {logout} from "../../redux/authReducer";
+import {logout} from "../../redux/actions/auth";
 import Profile from "./Profile";
 import {Navigate} from "react-router";
 

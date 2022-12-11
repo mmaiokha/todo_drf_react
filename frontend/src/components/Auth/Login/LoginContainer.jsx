@@ -1,7 +1,7 @@
 import React from 'react'
 import Login from './Login'
 import {connect} from 'react-redux'
-import {login, passwordChange, usernameChange} from '../../../redux/authReducer'
+import {login, passwordChange, usernameChange} from '../../../redux/actions/auth'
 import {Navigate} from 'react-router'
 
 class LoginContainer extends React.Component {
