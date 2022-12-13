@@ -7,7 +7,7 @@ import {Navigate} from 'react-router'
 class LoginContainer extends React.Component {
     render() {
         return (
-            this.props.isAuthenticated ? <Navigate to={'/'} /> : <Login password={this.props.password} username={this.props.username}
+            this.props.isAuthenticated ? <Navigate to={'/todo'} /> : <Login password={this.props.password} username={this.props.username}
                    passwordChange={this.props.passwordChange} usernameChange={this.props.usernameChange}
                    login={this.props.login} isAuthenticated={this.props.user}
             />

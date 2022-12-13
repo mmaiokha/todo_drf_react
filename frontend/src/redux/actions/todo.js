@@ -1,15 +1,16 @@
 import axios from 'axios'
 
-export const SET_TODO_LIST = 'SET_TODO_LIST'
-export const ADD_TASK_SUCCESS = 'ADD_TASK_SUCCESS'
+export const SET_TODO = 'SET_TODO'
+export const SET_MY_TODOS_LIST = 'SET_MY_TODOS_LIST'
 
+export const ADD_TASK_SUCCESS = 'ADD_TASK_SUCCESS'
 export const DELETE_TASK_SUCCESS = 'DELETE_TASK_SUCCESS'
 export const EDIT_TASK_SUCCESS = 'EDIT_TASK_SUCCESS'
 
 export const CHANGE_ADD_TASK_INPUT_VALUE = 'CHANGE_ADD_TASK_INPUT_VALUE'
 export const CHANGE_EDIT_TASK_INPUT_VALUE = 'CHANGE_EDIT_TASK_INPUT_VALUE'
 
-export const setTodoList = (todoListId = null) => async dispatch => {
+export const setTodo = (todoListId = null) => async dispatch => {
     let URL = `${process.env.REACT_APP_API_URL}task_list/current/`
     if (todoListId) {
         URL = `${process.env.REACT_APP_API_URL}task_list/${todoListId}/`
@@ -23,11 +24,29 @@ export const setTodoList = (todoListId = null) => async dispatch => {
     }
     try {
         const res = await axios.get(URL, config)
-        dispatch({type: SET_TODO_LIST, todo: res.data})
+        dispatch({type: SET_TODO, todo: res.data})
     } catch (err) {
         console.log(err)
     }
 };
+
+export const setMyTodos = () => async dispatch => {
+    let URL = `${process.env.REACT_APP_API_URL}task_list/my_list/`
+    const config = {
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('access')}`,
+            'Accept': 'application/json'
+        }
+    }
+    try {
+        const res = await axios.get(URL, config)
+        dispatch({type: SET_MY_TODOS_LIST, todos: res.data})
+    } catch (err) {
+        console.log(err)
+    }
+    return undefined
+}
 
 export const addTask = (todoListId, title, description) => async dispatch => {
     const config = {

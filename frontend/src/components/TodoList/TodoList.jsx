@@ -8,7 +8,7 @@ const TodoList = (props) => {
     return (
         <div className='containerWrapper'>
             <div className='nav'>
-                <NavLink to={''} className={({isActive}) => (isActive ? 'activeLink' : "") + " " + 'linkItem'}>
+                <NavLink to={'current'} className={({isActive}) => (isActive ? 'activeLink' : "") + " " + 'linkItem'}>
                     Current
                 </NavLink>
                 <NavLink to={'list'} className={({isActive}) => (isActive ? 'activeLink' : "") + " " + 'linkItem'}>

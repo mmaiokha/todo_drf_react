@@ -1,5 +1,6 @@
 import {
-    SET_TODO_LIST,
+    SET_TODO,
+    SET_MY_TODOS_LIST,
     ADD_TASK_SUCCESS,
     DELETE_TASK_SUCCESS,
     EDIT_TASK_SUCCESS,
@@ -9,16 +10,20 @@ import {
 
 let initialState = {
     todo: {tasks: []},
-    todoLists: [],
+    myTodos: [],
     addTaskInputValue: '',
     editTaskInputValue: '',
 }
 
 const todoReducer = (state = initialState, action) => {
     switch (action.type) {
-        case SET_TODO_LIST:
+        case SET_TODO:
             return {
                 ...state, todo: action.todo
+            }
+        case SET_MY_TODOS_LIST:
+            return {
+                ...state, myTodos: action.todos
             }
         case CHANGE_ADD_TASK_INPUT_VALUE:
             return {

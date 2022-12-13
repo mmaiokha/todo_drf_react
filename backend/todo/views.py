@@ -36,3 +36,12 @@ class TaskViewSet(viewsets.ModelViewSet):
     serializer_class = TaskSerializer
     queryset = Task.objects.all()
     permission_classes = [IsAuthenticated, ]
+
+
+class MyTaskListsView(generics.ListAPIView):
+    queryset = TaskList.objects.all()
+    serializer_class = TaskListSerializer
+    permission_classes = [IsAuthenticated, ]
+
+    def get_queryset(self):
+        return self.queryset.filter(user=self.request.user).order_by('-created')

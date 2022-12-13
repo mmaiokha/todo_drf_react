@@ -1,0 +1,42 @@
+.todoContainer {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+
+    border-bottom: 1px solid #404040;
+}
+.todoContainer:first-child {
+    margin-top: 20px;
+}
+.todoContainer:last-child {
+    margin-bottom: 0;
+}
+
+.todoTitle {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 21px;
+    color: #404040;
+
+    margin: 0;
+}
+
+.todoDescription {
+    margin: 10px 0 15px 0;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+
+    color: #6B7280;
+}
+
+.todoDetail {
+    margin-bottom: 15px;
+
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 16px;
+
+    color: #404040;
+}

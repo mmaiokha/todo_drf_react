@@ -5,18 +5,18 @@ import {
     changeAddTaskInputValue,
     changeEditTaskInputValue,
     deleteTask,
-    editTask,
-    setTodoList
+    editTask, setMyTodos,
+    setTodo
 } from '../../redux/actions/todo'
 import React from 'react'
 import {Navigate} from 'react-router'
 
-
 class TodoListContainer extends React.Component {
 
     componentDidMount() {
+        console.log(123)
         if (this.props.isAuthenticated) {
-            this.props.setTodoList()
+            this.props.setMyTodos()
         }
     }
 
@@ -34,6 +34,8 @@ class TodoListContainer extends React.Component {
                                                       editTask={this.props.editTask}
 
                                                       deleteTask={this.props.deleteTask}
+
+                                                      myTodos={this.props.state.myTodos}
             />
             : <Navigate to={'/login'}/>
     };
@@ -54,7 +56,8 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps,
     {
-        setTodoList,
+        setTodo,
+        setMyTodos,
         changeAddTaskInputValue,
         changeEditTaskInputValue,
         addTask,

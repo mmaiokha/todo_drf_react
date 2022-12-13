@@ -7,7 +7,8 @@ import ProfileContainer from './components/Profile/ProfileContainer'
 import ProfileInfo from './components/Profile/ProfileInfo/ProfileInfo'
 import EditProfile from './components/Profile/EditProfile/EditProfile'
 import TaskLists from './components/TodoList/TaskLists/TaskLists'
-import Tasks from './components/TodoList/Tasks/Tasks'
+
+import TasksContainer from "./components/TodoList/Tasks/TasksContainer";
 
 function App() {
     return (
@@ -16,10 +17,12 @@ function App() {
                 <HeaderContainer />
                 <div className='appWrapperContent'>
                     <Routes>
-                        <Route path='*' element={<TodoListContainer />} >
-                            <Route path='' element={<Tasks />}/>
-                            <Route path='list' element={<TaskLists />}/>
+                        <Route path='todo/*' element={<TodoListContainer />} >
+                            <Route path='current' element={<TasksContainer />} />
+                            <Route path=':id' element={<TasksContainer />} />
+                            <Route path='list' element={<TaskLists />} />
                         </Route>
+
                         <Route path='/profile/*' element={<ProfileContainer />}>
                             <Route path='' element={<ProfileInfo />} />
                             <Route path='info' element={<ProfileInfo />} />
