@@ -1,0 +1,24 @@
+.todosWrapper {
+    height: 100%;
+}
+
+.title {
+    margin: 0 0 20px 0;
+}
+
+.todosContainer {
+    height: 590px;
+    max-height: 590px;
+    overflow-y: scroll;
+    padding-right: 20px;
+}
+.todosContainer::-webkit-scrollbar {
+    background: #f3f3f3;
+    width: 10px;
+    border-radius: 5px;
+}
+
+.todosContainer::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background: #888;
+}

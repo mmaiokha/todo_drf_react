@@ -49,7 +49,12 @@ const todoReducer = (state = initialState, action) => {
             let indexOfObject = stateCopy.todo.tasks.findIndex(object => {
                 return object.id === action.id;
             });
-            stateCopy.todo.tasks[indexOfObject].title = action.newTitle
+            if (action.newTitle) {
+                stateCopy.todo.tasks[indexOfObject].title = action.newTitle
+            }
+            if (action.completed !== null) {
+                stateCopy.todo.tasks[indexOfObject].completed = action.completed
+            }
             stateCopy.editTaskInputValue = ''
             return stateCopy
         }

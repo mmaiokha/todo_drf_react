@@ -1,5 +1,6 @@
 import s from './Task.module.css'
 import React, {useState} from 'react'
+import EditModal from "./EditModal/EditModal";
 
 
 const Task = (props) => {
@@ -7,17 +8,26 @@ const Task = (props) => {
     let toggleIsActiveMenu = () => {
         setIsActive(current => !current);
     }
-
     const [isActiveModal, setIsActiveModal] = useState(false);
 
-    let editInputRef = React.createRef()
+    const toggleIsCompletedTask = () => {
+        props.editTask(props.id, null, props.isCompleted ? false : true)
+    }
 
     return (
         <>
             <div className={s.taskItem}>
                 <div>
-                    <h3 className={s.title}>{props.title}</h3>
-                    <p className={s.description}>{props.description}</p>
+
+                    <label className={s.checkboxContainer}>
+                        <h3 className={`${s.title} ${props.isCompleted ? s.completed : ''}`}>{`${props.title} `}</h3>
+                        <input type='checkbox'
+                               onChange={toggleIsCompletedTask}
+                               defaultChecked={props.isCompleted ? true : false} />
+                        <span className={s.checkmark}></span>
+                    </label>
+
+                    {/*<p className={s.description}>{props.description}</p>*/}
                 </div>
                 <div>
                     <button className={s.btn} onClick={toggleIsActiveMenu}></button>
@@ -27,32 +37,19 @@ const Task = (props) => {
                             props.changeEditTaskInputValue(props.title)
                             setIsActiveModal(true)
                             setIsActive(false)
-                        }}>edit</button>
+                        }}>edit
+                        </button>
                     </div>
                 </div>
             </div>
 
-            <div className={`${s.modal} ${isActiveModal ? s.activeModal : ''}`} onClick={() => setIsActiveModal(false)}>
-                <div className={s.modalContent} onClick={e => e.stopPropagation()}>
-                    <div className={s.modalHeader}>
-                        <h4 className={s.modalTitle}>Edit task</h4>
-                        <button className={s.modalCloseBtn} onClick={() => setIsActiveModal(false)}>×</button>
-
-                    </div>
-                    <div>
-                        <input className={s.modalInput} placeholder='Title' value={props.editValue} onChange={() => {
-                            props.changeEditTaskInputValue(editInputRef.current.value)
-                        }} ref={editInputRef}/>
-                        <button className={s.modalBtn} onClick={() => {
-                            props.editTask(props.id, props.editValue)
-                            setIsActiveModal(false)}}
-                        >Save changes</button>
-                        <button className={s.modalBtn}
-                                onClick={() => setIsActiveModal(false)}
-                        >Cancel</button>
-                    </div>
-                </div>
-            </div>
+            <EditModal id={props.id}
+                       isActiveModal={isActiveModal}
+                       setIsActiveModal={setIsActiveModal}
+                       editTask={props.editTask}
+                       editValue={props.editValue}
+                       changeEditTaskInputValue={props.changeEditTaskInputValue}
+            />
         </>
     )
 }

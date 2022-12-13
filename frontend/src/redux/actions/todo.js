@@ -83,7 +83,7 @@ export const deleteTask = (taskId) => async dispatch => {
     }
 };
 
-export const editTask = (taskId, title) => async dispatch => {
+export const editTask = (taskId, title = null, completed = null) => async dispatch => {
     const config = {
         headers: {
             'Content-Type': 'application/json',
@@ -91,11 +91,17 @@ export const editTask = (taskId, title) => async dispatch => {
         }
     }
     const data = {
-        title: title,
+
+    }
+    if (completed !== null) {
+        data.completed = completed
+    }
+    if (title) {
+        data.title = title
     }
     try {
         axios.patch(`${process.env.REACT_APP_API_URL}task/${taskId}/`, data, config)
-        dispatch({type: EDIT_TASK_SUCCESS, newTitle: title, id: taskId})
+        dispatch({type: EDIT_TASK_SUCCESS, newTitle: title, id: taskId, completed:completed})
     } catch (err) {
         console.log(err)
     }

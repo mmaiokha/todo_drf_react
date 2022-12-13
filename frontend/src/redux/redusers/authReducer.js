@@ -10,7 +10,7 @@ import {
 let initialStore = {
     access: localStorage.getItem('access'),
     refresh: localStorage.getItem('refresh'),
-    isAuthenticated: false,
+    isAuthenticated: localStorage.getItem('access') ? true : false,
     user: null,
     username: '',
     password: ''

@@ -14,7 +14,65 @@
     line-height: 21px;
 
     margin: 0;
+    display: inline;
 }
+
+.title.completed {
+    text-decoration: line-through;
+    opacity: .70;
+}
+
+/*completed*/
+.checkboxContainer {
+    position: relative;
+    padding-left: 35px;
+}
+.checkboxContainer input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    height: 24px;
+    width: 24px;
+
+    border-radius: 12px;
+    background-color: #F3F3F3;
+}
+.checkmark:hover {
+    background-color: #e1e1e1;
+}
+.checkboxContainer input:checked ~ .checkmark {
+    background-color: #404040;
+}
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+.checkboxContainer input:checked ~ .checkmark:after {
+    display: block;
+}
+.checkboxContainer .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+
 
 .description {
     font-weight: 400;
@@ -49,86 +107,5 @@
 }
 
 /*Edit task*/
-.modal {
-    visibility: collapse;
 
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-
-    height: 100vh;
-    width: 100%;
-
-    background: rgba(0, 0, 0, 0.5);
-}
-.activeModal {
-    visibility: visible;
-}
-
-.modalContent {
-    padding: 20px;
-    margin: 100px auto;
-
-    width: 600px;
-
-    background: white;
-
-    border-radius: 10px;
-}
-
-.modalHeader {
-    display: flex;
-    justify-content: space-between;
-}
-
-.modalCloseBtn {
-    border: none;
-    border-radius: 12px;
-
-    height: 24px;
-    width: 24px;
-
-    background: #9333EA;
-    color: #F3F3F3;
-
-    cursor: pointer;
-}
-
-.modalTitle {
-    margin: 0;
-}
-
-.modalInput {
-    box-sizing: border-box;
-    width: 100%;
-
-    padding: 10px 44px 10px 10px;
-    margin-top: 20px;
-    border: none;
-    border-radius: 5px;
-    outline: none;
-
-    background: #F3F3F3;
-
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 19px;
-}
-
-.modalBtn {
-    margin: 10px 20px 0 0;
-    padding: 7px 10px;
-
-    border: none;
-    border-radius: 5px;
-
-    background: #9333EA;
-    color: #F3F3F3;
-
-    cursor: pointer;
-}
-.modalBtn:last-child {
-    margin: 10px 0 0 0;
-}
 

@@ -9,6 +9,7 @@ const Tasks = (props) => {
                                                                               id={t.id}
                                                                               title={t.title}
                                                                               desctiption={t.description}
+                                                                              isCompleted={t.completed}
 
                                                                               deleteTask={props.deleteTask}
                                                                               editTask={props.editTask}
