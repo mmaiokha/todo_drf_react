@@ -14,7 +14,7 @@ class Task(models.Model):
     description = models.TextField(blank=True, verbose_name='Description')
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-    completed = models.BooleanField(default=True)
+    completed = models.BooleanField(default=False)
     task_list = models.ForeignKey(TaskList, on_delete=models.CASCADE, related_name='tasks')
 
     def __str__(self):

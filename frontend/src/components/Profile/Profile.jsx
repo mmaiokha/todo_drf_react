@@ -19,7 +19,7 @@ const Profile = (props) => {
                             Password</NavLink>
                     </div>
                     <div className={s.linkItemsBottom}>
-                        <a onClick={() => props.logout()} className={'linkItem ' + s.logoutBtn}>Logout</a>
+                        <a onClick={() => props.logout()} className={'linkItem ' + 'logout'}>Logout</a>
                     </div>
                 </div>
             </div>

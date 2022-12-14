@@ -64,8 +64,6 @@ body {
     width: 24px;
     height: 24px;
 
-    background: #6B7280;
-
     display: inline-block;
     position: absolute;
 
@@ -77,9 +75,35 @@ body {
     color: #9333EA;
     background: rgba(147, 51, 234, 0.06);
 }
-.activeLink::before {
-    background: #9333EA;
+
+/*TodoList/Current*/
+.linkItem.current::before {
+    background: url("./assets/imgs/task-list-current.svg") no-repeat center;
 }
+.linkItem.current.activeLink::before {
+    background: url("./assets/imgs/task-list-current-active.svg") no-repeat center;
+}
+/*TodoList/list*/
+.linkItem.list::before {
+    background: url("./assets/imgs/task-list-lists.svg") no-repeat center;
+}
+.linkItem.list.activeLink::before {
+    background: url("./assets/imgs/task-list-lists-active.svg") no-repeat center;
+}
+/*Profile/Logout*/
+.linkItem.logout::before {
+    background: url("./assets/imgs/profile-logout.svg") no-repeat center;
+    background-size: 20px;
+}
+.linkItem.logout:hover::before {
+    background: url("./assets/imgs/profile-logout-active.svg") no-repeat center;
+    background-size: 20px;
+}
+.linkItem.logout:hover {
+    color: #9333EA;
+}
+
+
 
 /*Content styles*/
 .content {

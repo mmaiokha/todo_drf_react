@@ -1,14 +1,13 @@
 import './App.css'
-import TodoListContainer from './components/TodoList/TodoListContainer'
+import TodoListContainer from './components/TodoList/TodoListsContainer'
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import HeaderContainer from './components/Header/HeaderContainer'
 import LoginContainer from './components/Auth/Login/LoginContainer'
 import ProfileContainer from './components/Profile/ProfileContainer'
 import ProfileInfo from './components/Profile/ProfileInfo/ProfileInfo'
 import EditProfile from './components/Profile/EditProfile/EditProfile'
-import TaskLists from './components/TodoList/TaskLists/TaskLists'
-
 import TasksContainer from "./components/TodoList/Tasks/TasksContainer";
+import TaskListsContainer from "./components/TodoList/TaskLists/TaskListContainer";
 
 function App() {
     return (
@@ -20,7 +19,7 @@ function App() {
                         <Route path='todo/*' element={<TodoListContainer />} >
                             <Route path='current' element={<TasksContainer />} />
                             <Route path=':id' element={<TasksContainer />} />
-                            <Route path='list' element={<TaskLists />} />
+                            <Route path='list' element={<TaskListsContainer />} />
                         </Route>
 
                         <Route path='/profile/*' element={<ProfileContainer />}>

@@ -23,14 +23,16 @@ const Task = (props) => {
                         <h3 className={`${s.title} ${props.isCompleted ? s.completed : ''}`}>{`${props.title} `}</h3>
                         <input type='checkbox'
                                onChange={toggleIsCompletedTask}
-                               defaultChecked={props.isCompleted ? true : false} />
+                               defaultChecked={props.isCompleted ? true : false}/>
                         <span className={s.checkmark}></span>
                     </label>
-
-                    {/*<p className={s.description}>{props.description}</p>*/}
                 </div>
                 <div>
-                    <button className={s.btn} onClick={toggleIsActiveMenu}></button>
+                    <div className={s.btnContainer} onClick={toggleIsActiveMenu}>
+                        <div className={s.btnDot}></div>
+                        <div className={s.btnDot}></div>
+                        <div className={s.btnDot}></div>
+                    </div>
                     <div className={`${s.collapseMenu} ${isActive ? s.active : ""}`}>
                         <button onClick={() => props.deleteTask(props.id)}>Delete</button>
                         <button onClick={() => {

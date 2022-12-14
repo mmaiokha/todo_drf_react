@@ -6,8 +6,8 @@ const Header = (props) => {
     const authLinks = (
         <div className={s.headerWrapper}>
             <div className={s.links}>
-                <NavLink to={"/todo/current"}
-                         className={({isActive}) => (isActive ? s.activeLink : "") + " " + s.linkItem}>Todo</NavLink>
+                <NavLink to={"/todo"}
+                         className={({isActive}) => (isActive ? s.activeLink : "") + " " + s.linkItem} >Todo</NavLink>
                 <NavLink to={"/projects"}
                          className={({isActive}) => (isActive ? s.activeLink : "") + " " + s.linkItem}>Projects</NavLink>
             </div>
