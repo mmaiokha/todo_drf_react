@@ -66,3 +66,15 @@
     margin: 0 0 20px 0;
 }
 
+.menuToggler {
+    z-index: -99;
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 100vh;
+    height: 100vh;
+}
+
+.active {
+    z-index: 1
+}

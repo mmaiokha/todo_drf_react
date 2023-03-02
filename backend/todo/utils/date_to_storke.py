@@ -1,7 +1,7 @@
 from datetime import datetime
 
 
-def date_to_stroke(d=datetime.today().date(), weekday=datetime.today().weekday()):
+def date_to_stroke():
     months = {
         '1': "January",
         '2': "February",
@@ -27,5 +27,8 @@ def date_to_stroke(d=datetime.today().date(), weekday=datetime.today().weekday()
         '6': 'Sunday'
     }
 
-    d = str(d).split('-')
-    return f'{weekdays[str(weekday)]}, {months[d[1]]} {d[2]}, {d[0]}'
+    weekday = datetime.today().weekday()
+    day = datetime.today().day
+    year = datetime.today().year
+    month = int(datetime.today().month)
+    return f'{weekdays[str(weekday)]}, {months[str(month)]} {day}, {year}'

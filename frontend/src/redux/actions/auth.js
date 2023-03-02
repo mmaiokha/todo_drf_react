@@ -51,9 +51,25 @@ const loadUser = () => async dispatch => {
         const res = await axios.get(`${process.env.REACT_APP_API_URL}users/me/`, config)
         dispatch({type: USER_LOADED_SUCCESS, user: res.data})
     } catch (err) {
-
+        console.log(err)
     }
 };
+
+export const checkUserAuth = () => dispatch => {
+    const config = {
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('access')}`,
+            'Accept': 'application/json'
+        }
+    }
+
+    try {
+        axios.get(`${process.env.REACT_APP_API_URL}users/me/`, config)
+    } catch (err) {
+        dispatch({type: LOGIN_FAIL})
+    }
+}
 
 export const logout = () => {
     return {type: LOGOUT}

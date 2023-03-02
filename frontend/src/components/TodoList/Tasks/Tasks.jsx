@@ -1,9 +1,13 @@
 import s from './Tasks.module.css'
 import Task from './Task/Task'
-import React from 'react'
+import React, {useState} from 'react'
 
 
 const Tasks = (props) => {
+    const [currentActive, setIsActive] = useState(null);
+    let toggleIsActiveMenu = (id) => {
+        setIsActive(id);
+    }
     let taskElements
     props.todoList.tasks ? taskElements = props.todoList.tasks.map(t => <Task key={t.id}
                                                                               id={t.id}
@@ -15,12 +19,16 @@ const Tasks = (props) => {
                                                                               editTask={props.editTask}
                                                                               editValue={props.editInputValue}
                                                                               changeEditTaskInputValue={props.changeEditTaskInputValue}
+                                                                              currentActive={currentActive}
+                                                                              toggleIsActiveMenu={toggleIsActiveMenu}
     />) : taskElements = "No tasks"
 
     let inputRef = React.createRef();
 
     return (
+
         <div className={s.taskItemWrapper}>
+            <div className={`${s.menuToggler} ${currentActive ? s.active : ''}`} onClick={() => setIsActive(null)}></div>
             <div>
                 <h3 className={s.tlTitle}>{props.todoList.title}</h3>
                 <div className={s.taskItems}>
